@@ -12,4 +12,6 @@
 # Branch
     Main
     Development
-    *Murilo
+    Murilo
+    Douglas 
+    
