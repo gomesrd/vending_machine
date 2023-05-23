@@ -12,4 +12,4 @@
 # Branch
     Main
     Development
-    *DOuglas
+    *Douglas
