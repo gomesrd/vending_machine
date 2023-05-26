@@ -11,6 +11,7 @@ int verifica_administrador();
 int main()
 {
     int operacao = 0, quantia_inserida = 0;
+    int senha, opcoes; //Variaveis adm
 
     do
     {
@@ -26,13 +27,30 @@ int main()
         cin >> operacao;
 
         if (operacao = 99)
-        {
-            if ()
-            {
-                cout << "1 - LISTAR INVETÁRIO" << endl;
-                cout << "2 - REPOSIÇÃO DE PRODUTOS" << endl;
-                cout << "3 - FATURAMENTO" << endl;
-            }
+        {  
+            cout << "Senha: ";  //Senha para acesssar o modo administrador: 1234
+            cin >> senha;
+            
+                if (senha == 1234)
+                {
+                    cout << "1 - LISTAR INVETÁRIO" << endl;
+                    cout << "2 - REPOSIÇÃO DE PRODUTOS" << endl;
+                    cout << "3 - FATURAMENTO" << endl;
+                    cin >> opcoes;
+
+                        switch (opcoes)
+                        {
+                            case: 1                              
+
+                            case: 2
+
+                            case: 3
+                        }
+                }
+                else
+                {
+                    //Voltar para o inicio do programa
+                }
         }
 
         else
