@@ -2,6 +2,7 @@
 
 using namespace std;
 
+void inicia_os_precos_e_a_quantidade_de_cada_produto();
 int calcule_valor_transacao();
 int verifica_disponibilidade_produto();
 int lista_invetario();
@@ -12,6 +13,14 @@ int main()
 {
     int operacao = 0, quantia_inserida = 0;
     int senha, opcoes; //Variaveis adm
+    char simnao;
+
+    int quanti_agua;
+    float *p_agua;
+    float preco_agua;
+
+    p_agua = &preco_agua;
+
 
     do
     {
@@ -23,7 +32,7 @@ int main()
         cout << "4 - Bolacha ---------- R$ 3,25" << endl;
         cout << "5 - Salgadinho ---------- R$ 4,50" << endl;
         cout << "99 - ADMINISTRADOR" << endl;
-        cout << "9 - SAIR" << endl;
+     // cout << "9 - SAIR" << endl;
         cin >> operacao;
 
         if (operacao = 99)
@@ -65,10 +74,21 @@ int main()
 
             cout << "O seu troco é de R$ " << endl;
         }
-    } while (operacao != 9);
+            cout << "Deseja compra mais algum produto? (s/n): ";
+            cin >> simnao;
+
+    } while (simnao == 's' || simnao 'S');  	//se a resposta for sim ele volta para a pagina principal
+
+    cout << "Obrigado por comprar, volte sempre" << endl;
 
     system("read");
     return 0;
+}
+
+// FUNÇÃO PARA INICIAR OS PREÇOS E AS QUANTIDADES DOS PRODUTOS NO INICIO DO PROGRAMA
+void inicia_os_precos_e_a_quantidade_de_cada_produto()
+{
+    *preco_agua = 3.50;
 }
 
 // FUNÇÃO RESPONSÁVEL POR VERIFICAR SE O PRODUTO SELECIONADO ESTÁ DISPONÍVEL NO ESTOQUE
