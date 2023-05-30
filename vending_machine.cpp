@@ -2,6 +2,10 @@
 
 using namespace std;
 
+bool verifica_estoque = false;
+int operacao, troco = 0, qtdade_agua = 2;
+float preco_agua = 3, dinheiro_inserido = 0;
+
 void modo_vendas()
 {
 }
@@ -16,11 +20,6 @@ void modo_administrador()
 
 int main()
 {
-
-    bool verifica_estoque = false;
-    int operacao, troco = 0, qtdade_agua = 2;
-    float preco_agua = 3, dinheiro_inserido = 0;
-
     do
     {
         cout << "-------Bem vindo a máquina de vendas automáticas FATEC-RP-----------\n";
@@ -31,7 +30,7 @@ int main()
         cout << "5 - Salgadinho ------------ R$ 4,50" << endl;
         cout << "8 - ADMINISTRADOR" << endl;
         cout << "9 - SAIR" << endl;
-        cout << "Digite o número do produto que deseja comprar: ";
+        cout << "Digite o código do produto que deseja comprar: ";
         cin >> operacao;
 
         switch (operacao)
@@ -70,7 +69,7 @@ int main()
                 {
 
                     cout << "****O seu troco é de R$ " << troco << "****" << endl;
-                    cout << "****Retire o seu produto!****\n\n\n";
+                    cout << "****Compra realizada com suceso! Retire o seu produto!****\n\n\n";
                 }
             }
 
@@ -88,7 +87,7 @@ int main()
                 {
 
                     cout << "****O seu troco é de R$ " << troco << "****" << endl;
-                    cout << "****Retire o seu produto!****\n\n\n";
+                    cout << "****Compra realizada com suceso! Retire o seu produto!****\n\n\n";
                 }
             }
             break;
