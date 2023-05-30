@@ -3,11 +3,12 @@
 using namespace std;
 
 bool verifica_estoque = false;
-int operacao_compra = 0, operacao_adm = 0, troco = 0, qtdade_agua = 10, nova_qtdade = 0;
+int operacao_compra = 0, operacao_adm = 0, troco = 0, qtdade_agua = 0, nova_qtdade = 0;
 float preco_agua = 3, dinheiro_inserido = 0, total_vendas = 0;
 string produto;
 
 void modo_administrador();
+void modo_vendas();
 
 int main()
 {
@@ -28,6 +29,7 @@ int main()
         {
 
         case 1:
+
             verifica_estoque = qtdade_agua >= 1;
             if (verifica_estoque == true)
             {
@@ -36,53 +38,10 @@ int main()
             }
             else
             {
-                cout << "Não há estoque do produto selecionado, selecione outro produto.";
+                cout << "\nNão há estoque do produto selecionado, selecione outro produto.";
                 break;
             }
-            if (dinheiro_inserido < preco_agua)
-            {
-                do
-                {
-                    cout << "O valor inserido é insulficiente para pagamento, por favor insira o valor correto:";
-                    cin >> dinheiro_inserido;
-
-                } while (dinheiro_inserido < preco_agua);
-
-                troco = dinheiro_inserido - preco_agua;
-                qtdade_agua = qtdade_agua - 1;
-                total_vendas = total_vendas + preco_agua;
-
-                cout << "Ainda restam " << qtdade_agua << endl;
-
-                if (troco == 0)
-                {
-                    cout << "\n\n****Compra realizada com suceso! \n Retire o seu produto!****";
-                }
-                else
-                {
-
-                    cout << "\n\n****O seu troco é de R$ " << troco << "****" << endl;
-                    cout << "\n\n****Compra realizada com suceso! \n Retire o seu produto!****";
-                }
-            }
-
-            else
-            {
-                troco = dinheiro_inserido - preco_agua;
-                qtdade_agua = qtdade_agua - 1;
-                cout << "Ainda restam " << qtdade_agua << endl;
-
-                if (troco == 0)
-                {
-                    cout << "****\n\nCompra realizada com suceso! \nRetire o seu produto!****";
-                }
-                else
-                {
-
-                    cout << "****\n\nO seu troco é de R$ " << troco << "****" << endl;
-                    cout << "****\n\nCompra realizada com suceso! \nRetire o seu produto!****";
-                }
-            }
+            modo_vendas();
             break;
 
         case 8:
@@ -151,4 +110,53 @@ void modo_administrador()
         }
 
     } while (operacao_adm != 9);
+}
+
+void modo_vendas()
+{
+
+    if (dinheiro_inserido < preco_agua)
+    {
+        do
+        {
+            cout << "O valor inserido é insulficiente para pagamento, por favor insira o valor correto:";
+            cin >> dinheiro_inserido;
+
+        } while (dinheiro_inserido < preco_agua);
+
+        troco = dinheiro_inserido - preco_agua;
+        qtdade_agua = qtdade_agua - 1;
+        total_vendas = total_vendas + preco_agua;
+
+        cout << "Ainda restam " << qtdade_agua << endl;
+
+        if (troco == 0)
+        {
+            cout << "\n\n****Compra realizada com suceso!**** \n ****Retire o seu produto!****";
+        }
+        else
+        {
+            cout << "\n****Compra realizada com suceso!****";
+            cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
+            cout << "\n ****Retire o seu produto!****";
+        }
+    }
+
+    else
+    {
+        troco = dinheiro_inserido - preco_agua;
+        qtdade_agua = qtdade_agua - 1;
+        cout << "Ainda restam " << qtdade_agua << endl;
+
+        if (troco == 0)
+        {
+            cout << "\n\n****Compra realizada com suceso!**** \n****Retire o seu produto!****";
+        }
+        else
+        {
+            cout << "\n****Compra realizada com suceso!****";
+            cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
+            cout << "\n ****Retire o seu produto!****";
+        }
+    }
 }
