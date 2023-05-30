@@ -3,15 +3,18 @@
 using namespace std;
 
 bool verifica_estoque = false;
-int operacao_compra = 0, operacao_adm = 0, troco = 0, qtdade_agua = 0, nova_qtdade = 0;
+int operacao_compra = 0, operacao_adm = 0, troco = 0, qtdade_agua = 10, nova_qtdade = 0;
 float preco_agua = 3, dinheiro_inserido = 0, total_vendas = 0;
 string produto;
 
+void compra_realizada_com_troco();
+void compra_realizada_sem_troco();
 void modo_administrador();
 void modo_vendas();
 
 int main()
 {
+
     do
     {
         cout << "\n\n\n-------Bem vindo a máquina de vendas automáticas FATEC-RP-----------\n\n";
@@ -59,6 +62,18 @@ int main()
     } while (operacao_compra != 9);
     system("read");
     return 0;
+}
+
+void compra_efetuada_com_troco()
+{
+    cout << "\n****Compra realizada com suceso!****";
+    cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
+    cout << "\n ****Retire o seu produto!****";
+}
+
+void compra_efetuada_sem_troco()
+{
+    cout << "\n\n****Compra realizada com suceso!**** \n ****Retire o seu produto!****";
 }
 
 void modo_administrador()
@@ -114,7 +129,6 @@ void modo_administrador()
 
 void modo_vendas()
 {
-
     if (dinheiro_inserido < preco_agua)
     {
         do
@@ -132,13 +146,11 @@ void modo_vendas()
 
         if (troco == 0)
         {
-            cout << "\n\n****Compra realizada com suceso!**** \n ****Retire o seu produto!****";
+            compra_efetuada_sem_troco();
         }
         else
         {
-            cout << "\n****Compra realizada com suceso!****";
-            cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
-            cout << "\n ****Retire o seu produto!****";
+            compra_efetuada_com_troco();
         }
     }
 
@@ -150,13 +162,11 @@ void modo_vendas()
 
         if (troco == 0)
         {
-            cout << "\n\n****Compra realizada com suceso!**** \n****Retire o seu produto!****";
+            compra_efetuada_sem_troco();
         }
         else
         {
-            cout << "\n****Compra realizada com suceso!****";
-            cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
-            cout << "\n ****Retire o seu produto!****";
+            compra_efetuada_com_troco();
         }
     }
 }
