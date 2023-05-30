@@ -98,7 +98,7 @@ void modo_administrador()
             cout << "Digite a quantidade que será reposta: ";
             cin >> nova_qtdade;
             qtdade_agua = qtdade_agua + nova_qtdade;
-            cout << "\n\nPERAÇÃO EFETUADA COM SUCESSO!\n\n";
+            cout << "\n\nOPERAÇÃO EFETUADA COM SUCESSO!\n\n";
             cout << "Foram adicionadas " << nova_qtdade << " unidades no estoque do produto " << produto << "." << endl;
             cout << "O novo saldo é de  " << qtdade_agua << " unidades.";
             break;
@@ -158,6 +158,7 @@ void modo_vendas()
     {
         troco = dinheiro_inserido - preco_agua;
         qtdade_agua = qtdade_agua - 1;
+        total_vendas = total_vendas + preco_agua;
         cout << "Ainda restam " << qtdade_agua << endl;
 
         if (troco == 0)
