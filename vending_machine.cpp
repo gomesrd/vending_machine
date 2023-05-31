@@ -13,7 +13,7 @@ typedef struct
     int codigo;
     string descricao;
     float preco;
-    int quantidade;
+    float quantidade;
 } Produto;
 
 Produto lista[10];
@@ -43,8 +43,7 @@ int main()
             if (verifica_estoque == true)
             {
                 cout << "Produto selecionado: " << lista[operacao_compra].descricao << endl;
-                cout
-                    << "Insira o dinheiro na máquina: ";
+                cout << "Insira o dinheiro na máquina: ";
                 cin >> dinheiro_inserido;
             }
             else
@@ -128,6 +127,79 @@ int main()
     return 0;
 }
 
+void inventario()
+{
+    cout << "\n\n\n-------INVENTÁRIO-------\n\n";
+    cout << "O estoque atual possui os seguintes produtos e quantidades: " << endl;
+    for (int i = 0; i < produtos_totais; i++)
+    {
+        cout << lista[i].codigo << " - " << lista[i].descricao << " ----------------------- " << lista[i].quantidade << " unidade(s)." << endl;
+    }
+}
+
+void faturamento()
+
+{
+    float vendas_futuras;
+    for (int i = 0; i < produtos_totais; i++)
+    {
+        vendas_futuras = vendas_futuras + lista[i].preco * lista[i].quantidade;
+    }
+
+    cout << "\n\n\n-------FATURAMENTO-------\n\n";
+    // vendas_futuras = qtdade_agua * preco_agua;
+    cout << "Total faturado com as vendas já realizadas: R$ " << total_vendas << endl;
+    cout << "Total a ser faturado com vendas futuras: R$ " << vendas_futuras << endl;
+    cout << "\nPressione 'ENTER' para retornar ao painel do administrador" << endl;
+
+    system("read");
+}
+
+void compra_efetuada_com_troco()
+{
+    cout << "\n****Compra realizada com suceso!****";
+    cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
+    cout << "\n ****Retire o seu produto!****";
+}
+
+void compra_efetuada_sem_troco()
+{
+    cout << "\n\n****Compra realizada com suceso!**** \n ****Retire o seu produto!****";
+}
+
+int modo_vendas()
+{
+    int abater_estoque = 0;
+    if (dinheiro_inserido < lista[operacao_compra].preco)
+    {
+        do
+        {
+            cout << "O valor inserido é insulficiente para pagamento, por favor insira o valor correto: ";
+            cin >> dinheiro_inserido;
+
+        } while (dinheiro_inserido < lista[operacao_compra].preco);
+    }
+
+    troco = dinheiro_inserido - lista[operacao_compra].preco;
+    abater_estoque = (lista[operacao_compra].quantidade - 1);
+    lista[operacao_compra].quantidade = abater_estoque;
+    total_vendas = total_vendas + lista[operacao_compra].preco;
+
+    if (troco == 0)
+    {
+        compra_efetuada_sem_troco();
+    }
+    else
+
+    {
+        compra_efetuada_com_troco();
+    }
+
+    cout << "\n\n Ainda restam " << lista[operacao_compra].quantidade << endl;
+
+    return 0;
+}
+
 int mostra_produtos()
 {
     lista[0].codigo = 1;
@@ -137,7 +209,7 @@ int mostra_produtos()
     cout << lista[0].quantidade << endl;
 
     lista[1].codigo = 2;
-    lista[1].descricao = "Refrigerante";
+    lista[1].descricao = "Refrigerante ";
     lista[1].preco = 4;
     lista[1].quantidade = 1;
 
@@ -159,7 +231,8 @@ int mostra_produtos()
     cout << "\n\n\n-------Bem vindo a máquina de vendas automáticas FATEC-RP-----------\n\n";
     for (int i = 0; i < produtos_totais; i++)
     {
-        cout << lista[i].codigo << " - " << lista[i].descricao << " ------------------------------- R$ " << lista[i].preco << endl;
+        cout << lista[i].codigo << " - " << lista[i].descricao << " ----------------------- "
+             << " R$ " << lista[i].preco << endl;
     }
     cout << "8 - ADMINISTRADOR" << endl;
     cout << "9 - SAIR" << endl;
@@ -169,16 +242,28 @@ int mostra_produtos()
     return operacao_compra;
 }
 
-void compra_efetuada_com_troco()
+void reposicao_estoque()
 {
-    cout << "\n****Compra realizada com suceso!****";
-    cout << "\n****O seu troco é de R$ " << troco << "****" << endl;
-    cout << "\n ****Retire o seu produto!****";
-}
+    int produto_selecionado = 0, nova_qtdade = 0;
 
-void compra_efetuada_sem_troco()
-{
-    cout << "\n\n****Compra realizada com suceso!**** \n ****Retire o seu produto!****";
+    cout << "\n\n\n-------REPOSIÇÃO DE ESTOQUE-------\n\n";
+    for (int i = 0; i < produtos_totais; i++)
+    {
+        cout << lista[i].codigo << " - " << lista[i].descricao << endl;
+    }
+    cout << "\n\nDigite o código do produto que deseja repor: ";
+    cin >> produto_selecionado;
+
+    produto_selecionado = produto_selecionado - 1;
+
+    cout << "Digite a nova quantidade: ";
+    cin >> nova_qtdade;
+
+    lista[produto_selecionado].quantidade = lista[produto_selecionado].quantidade + nova_qtdade;
+
+    cout << "\n\nOPERAÇÃO EFETUADA COM SUCESSO!\n\n";
+    cout << "Foram adicionadas " << nova_qtdade << " unidades no estoque do produto." << lista[produto_selecionado].nome  << endl;
+    cout << "A quantidade atualizada é de " << lista[produto_selecionado].quantidade << " unidades.";
 }
 
 void modo_administrador()
@@ -209,93 +294,12 @@ void modo_administrador()
             break;
 
         case 9:
-            cout << "Retornando ao modo de usuário, até mais!" << endl;
+            cout << "\nRetornando ao modo de usuário, até mais!" << endl;
             break;
 
         default:
-            cout << "Opção inválida, selecione novamente!";
+            cout << "\nOpção inválida, selecione novamente!";
         }
 
     } while (operacao_adm != 9);
-}
-
-void reposicao_estoque()
-{
-    cout << "\n\n\n-------REPOSIÇÃO DE ESTOQUE-------\n\n";
-    cout << "Digite o nome do produto que deseja repor: ";
-    // cin >> n;
-    cout << "Digite a quantidade que será reposta: ";
-    // cin >> nova_qtdade;
-    // qtdade_agua = qtdade_agua + nova_qtdade;
-    cout << "\n\nOPERAÇÃO EFETUADA COM SUCESSO!\n\n";
-    // cout << "Foram adicionadas " << nova_qtdade << " unidades no estoque do produto "
-    // << "." << endl;
-    // cout << "O novo saldo é de  " << qtdade_agua << " unidades.";
-}
-
-void inventario()
-{
-    cout << "\n\n\n-------INVENTÁRIO-------\n\n";
-    cout << "O estoque atual possui os seguintes produtos e quantidades: " << endl;
-    for (int i = 0; i < produtos_totais; i++)
-    {
-        cout << lista[i].codigo << " - " << lista[i].descricao << " -------------------------------  " << lista[i].quantidade << " unidade(s)." << endl;
-    }
-}
-
-void faturamento()
-
-{
-    // float vendas_futuras;
-    cout << "\n\n\n-------FATURAMENTO-------\n\n";
-    // vendas_futuras = qtdade_agua * preco_agua;
-    cout << "Total faturado com as vendas realizadas: R$ " << endl;
-    // cout << "Total a ser faturado com vendas futuras: R$ " << vendas_futuras << endl;
-}
-
-int modo_vendas()
-{
-    int abater_estoque = 0;
-    if (dinheiro_inserido < lista[operacao_compra].preco)
-    {
-        do
-        {
-            cout << "O valor inserido é insulficiente para pagamento, por favor insira o valor correto:";
-            cin >> dinheiro_inserido;
-
-        } while (dinheiro_inserido < lista[operacao_compra].preco);
-
-        troco = dinheiro_inserido - lista[operacao_compra].preco;
-        abater_estoque = (lista[operacao_compra].quantidade - 1);
-        lista[operacao_compra].quantidade = abater_estoque;
-        total_vendas = total_vendas + lista[operacao_compra].preco;
-
-        cout << "Ainda restam " << lista[operacao_compra].quantidade << endl;
-
-        if (troco == 0)
-        {
-            compra_efetuada_sem_troco();
-        }
-        else
-        {
-            compra_efetuada_com_troco();
-        }
-    }
-
-    else
-    {
-        troco = dinheiro_inserido - lista[operacao_compra].preco;
-        abater_estoque = (lista[operacao_compra].quantidade - 1);
-        lista[operacao_compra].quantidade = abater_estoque;
-        total_vendas = total_vendas + lista[operacao_compra].preco;
-        cout << "Ainda restam " << lista[operacao_compra].quantidade << endl;
-    }
-    if (troco == 0)
-    {
-        compra_efetuada_sem_troco();
-    }
-    else
-    {
-        compra_efetuada_com_troco();
-    }
 }
