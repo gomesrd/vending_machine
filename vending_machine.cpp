@@ -34,8 +34,6 @@ int main()
     {
         mostra_produtos();
 
-        operacao_compra = operacao_compra - 1;
-
         switch (operacao_compra)
         {
 
@@ -44,7 +42,9 @@ int main()
             verifica_estoque = lista[operacao_compra].quantidade >= 1;
             if (verifica_estoque == true)
             {
-                cout << "Insira o dinheiro na máquina: ";
+                cout << "Produto selecionado: " << lista[operacao_compra].descricao << endl;
+                cout
+                    << "Insira o dinheiro na máquina: ";
                 cin >> dinheiro_inserido;
             }
             else
@@ -135,17 +135,22 @@ int mostra_produtos()
     lista[0].preco = 3;
     lista[0].quantidade = 1;
     cout << lista[0].quantidade << endl;
+
+    lista[1].codigo = 2;
     lista[1].descricao = "Refrigerante";
     lista[1].preco = 4;
     lista[1].quantidade = 1;
+
     lista[2].codigo = 3;
     lista[2].descricao = "Chocolate";
     lista[2].preco = 3.5;
     lista[2].quantidade = 1;
+
     lista[3].codigo = 4;
     lista[3].descricao = "Bolacha";
     lista[3].preco = 3;
     lista[3].quantidade = 1;
+
     lista[4].codigo = 5;
     lista[4].descricao = "Salgadinho";
     lista[4].preco = 5;
@@ -160,6 +165,7 @@ int mostra_produtos()
     cout << "9 - SAIR" << endl;
     cout << "\n\nDigite o código do produto que deseja comprar: ";
     cin >> operacao_compra;
+    operacao_compra = operacao_compra - 1;
     return operacao_compra;
 }
 
@@ -231,16 +237,19 @@ void inventario()
 {
     cout << "\n\n\n-------INVENTÁRIO-------\n\n";
     cout << "O estoque atual possui os seguintes produtos e quantidades: " << endl;
-    // cout << "01. Agua: " << qtdade_agua << " unidades.";
+    for (int i = 0; i < produtos_totais; i++)
+    {
+        cout << lista[i].codigo << " - " << lista[i].descricao << " -------------------------------  " << lista[i].quantidade << " unidade(s)." << endl;
+    }
 }
 
 void faturamento()
 
 {
-    float vendas_futuras;
+    // float vendas_futuras;
     cout << "\n\n\n-------FATURAMENTO-------\n\n";
     // vendas_futuras = qtdade_agua * preco_agua;
-    cout << "Total faturado com as vendas realizadas: R$ " << total_vendas << endl;
+    cout << "Total faturado com as vendas realizadas: R$ " << endl;
     // cout << "Total a ser faturado com vendas futuras: R$ " << vendas_futuras << endl;
 }
 
@@ -262,7 +271,6 @@ int modo_vendas()
         total_vendas = total_vendas + lista[operacao_compra].preco;
 
         cout << "Ainda restam " << lista[operacao_compra].quantidade << endl;
-        return lista[operacao_compra].quantidade;
 
         if (troco == 0)
         {
@@ -272,8 +280,6 @@ int modo_vendas()
         {
             compra_efetuada_com_troco();
         }
-        return lista[operacao_compra].quantidade;
-        cout << "RETURN" << lista[operacao_compra].quantidade << endl;
     }
 
     else
@@ -283,8 +289,6 @@ int modo_vendas()
         lista[operacao_compra].quantidade = abater_estoque;
         total_vendas = total_vendas + lista[operacao_compra].preco;
         cout << "Ainda restam " << lista[operacao_compra].quantidade << endl;
-        return lista[operacao_compra].quantidade;
-        cout << "RETURN" << lista[operacao_compra].quantidade << endl;
     }
     if (troco == 0)
     {
@@ -294,7 +298,4 @@ int modo_vendas()
     {
         compra_efetuada_com_troco();
     }
-
-    return lista[operacao_compra].quantidade;
-    cout << "RETURN" << lista[operacao_compra].quantidade << endl;
 }
