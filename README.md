@@ -47,9 +47,11 @@ A. Quando quiser repor produtos, o administrador deve informar o nome do produto
 
 Melhorias:
 
-1. a reposição de estoque não está funcionando
-2. adicionar verificação para apenas numeros inteiros no pagamento
-3. adicionar a opção de enter para novas operações
+1. a reposição de estoque não está funcionando - OK
+2. adicionar verificação para apenas numeros com separação de ponto no pagamento
+3. adicionar a opção de enter sair do menu inventario e faturamento - OK
 4. adicionar senha para entrar no modo administrador
 5. passar as variaveis globais para o escopo das funções que a utilizam
-6. Ajustar os titulos dos menus
+6. Ajustar os titulos dos menus - OK
+7. Opção retornar no menu reposição - OK;
+8. Clear na troca de tela;
