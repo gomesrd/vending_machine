@@ -43,3 +43,13 @@ MODO ADMINISTRADOR
 
 
 A. Quando quiser repor produtos, o administrador deve informar o nome do produto e a quantidade que deseja repor.
+
+
+Melhorias:
+
+1. a reposição de estoque não está funcionando
+2. adicionar verificação para apenas numeros inteiros no pagamento
+3. adicionar a opção de enter para novas operações
+4. adicionar senha para entrar no modo administrador
+5. passar as variaveis globais para o escopo das funções que a utilizam
+6. Ajustar os titulos dos menus
