@@ -19,6 +19,8 @@ struct Produto
 
 Produto lista[5];
 
+void troca_pagina();
+
 int mostra_produtos()
 {
 
@@ -33,6 +35,8 @@ int mostra_produtos()
     cout << "\n\nDigite o código do produto que deseja comprar: ";
     cin >> operacao_compra;
     operacao_compra -= 1;
+
+    troca_pagina();
     return operacao_compra;
 }
 
@@ -43,6 +47,7 @@ void modo_administrador();
 void compra_efetuada_com_troco();
 void compra_efetuada_sem_troco();
 int operacao_vendas();
+
 
 int main()
 {
@@ -147,6 +152,9 @@ int reposicao_estoque()
         cout << "\n\nOPERAÇÃO EFETUADA COM SUCESSO!\n\n";
         cout << "Foram adicionadas " << nova_qtdade << " unidades no estoque do produto " << lista[produto_selecionado].descricao << endl;
         cout << "A quantidade atualizada é de " << lista[produto_selecionado].quantidade << " unidades." << endl;
+        
+        system("read || pause");
+        troca_pagina();
     };
 }
 
@@ -160,7 +168,8 @@ void inventario()
     }
     cout << "\nPressione 'ENTER' para retornar ao painel do administrador" << endl;
 
-    system("read");
+    system("read || pause");
+    troca_pagina();
 }
 
 void faturamento()
@@ -178,7 +187,8 @@ void faturamento()
     cout << "Total a ser faturado com vendas futuras: R$ " << vendas_futuras << endl;
     cout << "\nPressione 'ENTER' para retornar ao painel do administrador" << endl;
 
-    system("read");
+    system("read || pause");
+    troca_pagina();
 }
 
 void modo_administrador()
@@ -190,6 +200,7 @@ void modo_administrador()
         cout << "Senha incorreta!!";
     }else{
 
+        troca_pagina();
     do
     {
         cout << "\n\n\n----------------------------- Bem vindo ao Modo Administrador! -----------------------------\n\n";
@@ -203,18 +214,22 @@ void modo_administrador()
         switch (operacao_adm)
         {
         case 1:
+            troca_pagina();
             reposicao_estoque();
             break;
 
         case 2:
+            troca_pagina();
             inventario();
             break;
 
         case 3:
+            troca_pagina();
             faturamento();
             break;
 
         case 9:
+            troca_pagina();
             cout << "\nRetornando ao modo de usuário, até mais!" << endl;
             break;
 
@@ -269,13 +284,22 @@ int operacao_vendas()
         if (troco == 0)
         {
             compra_efetuada_sem_troco();
+            system("read || pause");
+            troca_pagina();
         }
         else
 
         {
             compra_efetuada_com_troco();
+            system("read || pause");
+            troca_pagina();
         }
     }
 
     return 0;
+}
+
+void troca_pagina()
+{
+    system("cls || clear");
 }
