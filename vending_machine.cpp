@@ -165,6 +165,7 @@ int reposicao_estoque()
         system("read || pause");
         troca_pagina();
     };
+    return 0;
 }
 
 void inventario()
@@ -255,14 +256,21 @@ void modo_administrador()
 
 void compra_efetuada_com_troco()
 {
-    cout << "\n****  Compra realizada com suceso! **** ";
+    cout << "\n****  Compra realizada com suceso! **** " << endl;
     cout << "\n**** O seu troco é de R$ " << troco << " **** " << endl;
-    cout << "\n **** Retire o seu produto! **** ";
+    cout << "\n**** Retire o seu produto! **** " << endl;
+    cout << "\n **** Pressione 'ENTER' para realizar um nova compra! **** " << endl;
+    system("read || pause");
+    troca_pagina();
 }
 
 void compra_efetuada_sem_troco()
 {
-    cout << "\n\n**** Compra realizada com suceso! ****  \n **** Retire o seu produto! **** ";
+    cout << "\n****  Compra realizada com suceso! **** " << endl;
+    cout << "\n**** Retire o seu produto! **** " << endl;
+    cout << "\n **** Pressione 'ENTER' para realizar um nova compra! **** " << endl;
+    system("read || pause");
+    troca_pagina();
 }
 
 int operacao_vendas()
@@ -296,15 +304,11 @@ int operacao_vendas()
         if (troco == 0)
         {
             compra_efetuada_sem_troco();
-            system("read || pause");
-            troca_pagina();
         }
         else
 
         {
             compra_efetuada_com_troco();
-            system("read || pause");
-            troca_pagina();
         }
     }
 
