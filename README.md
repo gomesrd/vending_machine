@@ -1,4 +1,4 @@
-# vending_machine
+# Vending Machine (Máquina de Vendas)
 
 Projeto de uma máquina de vendas automática idealizado em C++ para a matéria de Algorítimo e Lógica de Programação da FATEC-RP
 
@@ -6,9 +6,11 @@ Projeto de uma máquina de vendas automática idealizado em C++ para a matéria 
 
     Aluno: Robson Douglas dos Santos Gomes
     RA: 2840482313007
+    Análise e Desenvolvimento de Sistemas - FATEC-RP - 1º Semestre
 
     Aluno: Murilo Lucas da Silva Vianna
     RA: 2840482313013
+    Análise e Desenvolvimento de Sistemas - FATEC-RP - 1º Semestre
 
 # Branch
 
@@ -39,19 +41,29 @@ Projeto de uma máquina de vendas automática idealizado em C++ para a matéria 
 
 MODO ADMINISTRADOR
 
-1. Quando entrar no modo administrado, será exibida a mensagem para: a. repor produtos faltantes; b. listar um invetário dos produtos e suas quantidade; c. listar quanto a máquina já faturou e ainda pode faturar.
+1. Selecionado o modo administrador, será solicitado a senha. Caso correta, seguirá para o menu principal, caso contrário, retorna ao modo usuário.
+
+2. Quando entrar no modo administrador, será exibido um meno com as seguinte opçoes: 
+    a. repor produtos faltantes; 
+    b. listar um invetário dos produtos e suas quantidade; 
+    c. listar quanto a máquina já faturou e ainda pode faturar.
 
 
-A. Quando quiser repor produtos, o administrador deve informar o nome do produto e a quantidade que deseja repor.
+3. Quando quiser repor produtos, o administrador deve informar o código do produto e a quantidade que deseja repor.
 
 
-Melhorias:
+# Melhorias já realizadas desde o início do projeto:
 
-1. a reposição de estoque não está funcionando - OK
-2. adicionar verificação para apenas numeros com separação de ponto no pagamento
-3. adicionar a opção de enter sair do menu inventario e faturamento - OK
-4. adicionar senha para entrar no modo administrador - OK
-5. passar as variaveis globais para o escopo das funções que a utilizam
-6. Ajustar os titulos dos menus - OK
-7. Opção retornar no menu reposição - OK;
-8. Clear na troca de tela;
+* Opção de reposição de estoque - Implementado
+* Adicionar a opção de pressionar 'enter' sair do menu inventario e faturamento - Implementado
+* Adicionar senha para entrar no modo administrador - Imprementado
+* Adicionar senha para desligar a máquina - Imprementado
+* Ajustar os titulos dos menus - Imprementado
+* Opção retornar ao menu principal quando estiver no menu reposição - Imprementado
+* Troca de tela quando houver mudança de menus - Implementado
+
+
+# Melhorias futuras:
+
+* Adicionar verificação para apenas numeros no padrão aceito pelo C++ (sem uso de virgula)
+* Passar as variaveis globais para o escopo local das funções que a utilizam
