@@ -8,7 +8,6 @@ bool estoque_produto = false;
 int senha, operacao_compra = 0, operacao_adm = 0, troco = 0;
 float total_vendas = 0, dinheiro_inserido = 0;
 
-
 struct Produto
 {
     int codigo;
@@ -31,7 +30,7 @@ int mostra_produtos()
              << " R$ " << lista[i].preco << endl;
     }
     cout << "8 - ADMINISTRADOR" << endl;
-    cout << "9 - SAIR" << endl;
+    cout << "9 - DESLIGAR" << endl;
     cout << "\n\nDigite o código do produto que deseja comprar: ";
     cin >> operacao_compra;
     operacao_compra -= 1;
@@ -47,7 +46,6 @@ void modo_administrador();
 void compra_efetuada_com_troco();
 void compra_efetuada_sem_troco();
 int operacao_vendas();
-
 
 int main()
 {
@@ -103,9 +101,19 @@ int main()
             break;
 
         case 8:
-            cout << "Obrigado pela visita, até mais!" << endl;
-            break;
-
+            cout << "Para desligar a máquina de vendas, informe a senha: ";
+            cin >> senha;
+            if (senha != 1234)
+            {
+                operacao_compra = 0;
+                cout << "Senha incorreta, tente novamente." << endl;
+                break;
+            }
+            else
+            {
+                cout << "As atividades da máquina de vendas estão sendo encerradas, até mais!" << endl;
+                break;
+            }
         default:
             cout << "Opção inválida, selecione novamente!" << endl;
         }
@@ -152,7 +160,8 @@ int reposicao_estoque()
         cout << "\n\nOPERAÇÃO EFETUADA COM SUCESSO!\n\n";
         cout << "Foram adicionadas " << nova_qtdade << " unidades no estoque do produto " << lista[produto_selecionado].descricao << endl;
         cout << "A quantidade atualizada é de " << lista[produto_selecionado].quantidade << " unidades." << endl;
-        
+        cout << "\nPressione 'ENTER' para realizar nova reposição" << endl;
+
         system("read || pause");
         troca_pagina();
     };
@@ -193,58 +202,61 @@ void faturamento()
 
 void modo_administrador()
 {
-    cout << "Por favor digite a senha: ";
+    cout << "Você está no Modo Administrador. \n\nPor favor, digite a senha: ";
     cin >> senha;
 
-    if (senha != 1234){
-        cout << "Senha incorreta!!";
-    }else{
+    if (senha != 1234)
+    {
+        cout << "Senha incorreta, tente novamente.";
+    }
+    else
+    {
 
         troca_pagina();
-    do
-    {
-        cout << "\n\n\n----------------------------- Bem vindo ao Modo Administrador! -----------------------------\n\n";
-        cout << "1 - Repor o estoque" << endl;
-        cout << "2 - Realizar Inventário" << endl;
-        cout << "3 - Faturamento da máquina" << endl;
-        cout << "9 - SAIR DO MODO ADMINISTRADOR" << endl;
-        cout << "\n\nDigite o código do operação que deseja realizar: ";
-        cin >> operacao_adm;
-
-        switch (operacao_adm)
+        do
         {
-        case 1:
-            troca_pagina();
-            reposicao_estoque();
-            break;
+            cout << "\n\n\n----------------------------- Bem vindo ao Modo Administrador! -----------------------------\n\n";
+            cout << "1 - Repor o estoque" << endl;
+            cout << "2 - Realizar Inventário" << endl;
+            cout << "3 - Faturamento da máquina" << endl;
+            cout << "9 - SAIR DO MODO ADMINISTRADOR" << endl;
+            cout << "\n\nDigite o código do operação que deseja realizar: ";
+            cin >> operacao_adm;
 
-        case 2:
-            troca_pagina();
-            inventario();
-            break;
+            switch (operacao_adm)
+            {
+            case 1:
+                troca_pagina();
+                reposicao_estoque();
+                break;
 
-        case 3:
-            troca_pagina();
-            faturamento();
-            break;
+            case 2:
+                troca_pagina();
+                inventario();
+                break;
 
-        case 9:
-            troca_pagina();
-            cout << "\nRetornando ao modo de usuário, até mais!" << endl;
-            break;
+            case 3:
+                troca_pagina();
+                faturamento();
+                break;
 
-        default:
-            cout << "\nOpção inválida, selecione novamente!";
-        }
+            case 9:
+                troca_pagina();
+                cout << "\nRetornando ao modo de usuário, até mais!" << endl;
+                break;
 
-    } while (operacao_adm != 9);
+            default:
+                cout << "\nOpção inválida, selecione novamente!";
+            }
+
+        } while (operacao_adm != 9);
     }
 }
 
 void compra_efetuada_com_troco()
 {
     cout << "\n****  Compra realizada com suceso! **** ";
-    cout << "\n**** O seu troco é de R$ " << troco << "**** " << endl;
+    cout << "\n**** O seu troco é de R$ " << troco << " **** " << endl;
     cout << "\n **** Retire o seu produto! **** ";
 }
 
