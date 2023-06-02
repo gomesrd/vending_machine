@@ -5,8 +5,9 @@ using namespace std;
 #define produtos_totais 5
 
 bool estoque_produto = false;
-int operacao_compra = 0, operacao_adm = 0, troco = 0;
+int senha, operacao_compra = 0, operacao_adm = 0, troco = 0;
 float total_vendas = 0, dinheiro_inserido = 0;
+
 
 struct Produto
 {
@@ -182,6 +183,12 @@ void faturamento()
 
 void modo_administrador()
 {
+    cout << "Por favor digite a senha: ";
+    cin >> senha;
+
+    if (senha != 1234){
+        cout << "Senha incorreta!!";
+    }else{
 
     do
     {
@@ -216,6 +223,7 @@ void modo_administrador()
         }
 
     } while (operacao_adm != 9);
+    }
 }
 
 void compra_efetuada_com_troco()
