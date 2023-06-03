@@ -6,7 +6,7 @@ using namespace std;
 
 bool estoque_produto = false;
 int senha, operacao_compra = 0, operacao_adm = 0, troco = 0;
-float total_vendas = 0, dinheiro_inserido = 0;
+float total_vendas = 0, dinheiro_inserido = 0, vendas_futuras = 0;
 
 struct Produto
 {
@@ -43,6 +43,9 @@ int reposicao_estoque();
 void inventario();
 void faturamento();
 void modo_administrador();
+float calculo_troco();
+void abatimento_estoque();
+float calculo_total_vendas();
 void compra_efetuada_com_troco();
 void compra_efetuada_sem_troco();
 int operacao_vendas();
@@ -52,27 +55,27 @@ int main()
     lista[0].codigo = 1;
     lista[0].descricao = "Agua";
     lista[0].preco = 3;
-    lista[0].quantidade = 2;
+    lista[0].quantidade = 0;
 
     lista[1].codigo = 2;
     lista[1].descricao = "Refrigerante ";
     lista[1].preco = 4.75;
-    lista[1].quantidade = 2;
+    lista[1].quantidade = 0;
 
     lista[2].codigo = 3;
     lista[2].descricao = "Chocolate";
     lista[2].preco = 3.5;
-    lista[2].quantidade = 2;
+    lista[2].quantidade = 0;
 
     lista[3].codigo = 4;
     lista[3].descricao = "Bolacha";
     lista[3].preco = 3.25;
-    lista[3].quantidade = 2;
+    lista[3].quantidade = 0;
 
     lista[4].codigo = 5;
     lista[4].descricao = "Salgadinho";
     lista[4].preco = 4.79;
-    lista[4].quantidade = 2;
+    lista[4].quantidade = 0;
 
     do
     {
@@ -185,7 +188,6 @@ void inventario()
 void faturamento()
 
 {
-    float vendas_futuras;
     for (int i = 0; i < produtos_totais; i++)
     {
         vendas_futuras += lista[i].preco * lista[i].quantidade;
@@ -273,9 +275,33 @@ void compra_efetuada_sem_troco()
     troca_pagina();
 }
 
-int operacao_vendas()
+bool verifica_estoque(int operacao_compra)
 {
     estoque_produto = lista[operacao_compra].quantidade >= 1;
+    return estoque_produto;
+}
+
+float calculo_troco(float dinheiro_inserido, int operacao_compra)
+{
+    troco = dinheiro_inserido - lista[operacao_compra].preco;
+    return troco;
+}
+
+void abatimento_estoque(int operacao_compra)
+{
+    lista[operacao_compra].quantidade -= 1;
+}
+
+float calculo_total_vendas(int operacao_compra)
+{
+    total_vendas += lista[operacao_compra].preco;
+    return total_vendas;
+}
+
+int operacao_vendas()
+{
+
+    verifica_estoque(operacao_compra);
 
     if (estoque_produto == false)
     {
@@ -297,9 +323,9 @@ int operacao_vendas()
             } while (dinheiro_inserido < lista[operacao_compra].preco);
         }
 
-        troco = dinheiro_inserido - lista[operacao_compra].preco;
-        lista[operacao_compra].quantidade -= 1;
-        total_vendas += lista[operacao_compra].preco;
+        calculo_troco(dinheiro_inserido, operacao_compra);
+        abatimento_estoque(operacao_compra);
+        calculo_total_vendas(operacao_compra);
 
         if (troco == 0)
         {
