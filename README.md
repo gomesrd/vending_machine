@@ -2,7 +2,7 @@
 
 Projeto de uma máquina de vendas automática idealizado em C++ para a matéria de Algorítimo e Lógica de Programação da FATEC-RP
 
-#Link GitHub
+# Link GitHub
 https://github.com/gomesrd/vending_machine
 
 # Os alunos responsáveis pela elaboração do projeto foram:
