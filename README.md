@@ -61,9 +61,4 @@ MODO ADMINISTRADOR
 * Ajustar os titulos dos menus - Imprementado
 * Opção retornar ao menu principal quando estiver no menu reposição - Imprementado
 * Troca de tela quando houver mudança de menus - Implementado
-
-
-# Melhorias futuras:
-
-* Adicionar verificação para apenas numeros no padrão aceito pelo C++ (sem uso de virgula)
 * Passar as variaveis globais para o escopo local das funções que a utilizam
